@@ -39,15 +39,14 @@ func main() {
 		// Continuously read and print messages from the server
 		buf := make([]byte, 1024)
 		for {
-			fmt.Print("Enter your Message: ")
 			n, err := clientConn.Read(buf)
 			if err != nil {
 				fmt.Println("Connection to the server is closed.")
-				return
+				os.Exit(0)
 			}
 
 			serverMessage := string(buf[:n])
-			fmt.Println(serverMessage)
+			fmt.Print(serverMessage)
 		}
 	}()
 
